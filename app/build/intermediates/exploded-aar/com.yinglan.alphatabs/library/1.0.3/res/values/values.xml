@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AlphaTabView"><attr format="reference" name="tabIconNormal"/><attr format="reference" name="tabIconSelected"/><attr format="string" name="tabText"/><attr format="dimension" name="tabTextSize"/><attr format="color" name="textColorNormal"/><attr format="color" name="textColorSelected"/><attr format="color" name="badgeBackgroundColor"/></declare-styleable>
+    <string name="app_name">Library</string>
+</resources>

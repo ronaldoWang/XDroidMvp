@@ -1,0 +1,46 @@
+[
+    {
+        "merged": "D:\\StudioProjects\\XDroidMvp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\category_selected.png",
+        "source": "D:\\StudioProjects\\XDroidMvp\\app\\src\\main\\res\\mipmap-xxhdpi\\category_selected.png"
+    },
+    {
+        "merged": "D:\\StudioProjects\\XDroidMvp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\mine_selected.png",
+        "source": "D:\\StudioProjects\\XDroidMvp\\app\\src\\main\\res\\mipmap-xxhdpi\\mine_selected.png"
+    },
+    {
+        "merged": "D:\\StudioProjects\\XDroidMvp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\login_bg.png",
+        "source": "D:\\StudioProjects\\XDroidMvp\\app\\src\\main\\res\\mipmap-xxhdpi\\login_bg.png"
+    },
+    {
+        "merged": "D:\\StudioProjects\\XDroidMvp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\logo.png",
+        "source": "D:\\StudioProjects\\XDroidMvp\\app\\src\\main\\res\\mipmap-xxhdpi\\logo.png"
+    },
+    {
+        "merged": "D:\\StudioProjects\\XDroidMvp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\home_selected.png",
+        "source": "D:\\StudioProjects\\XDroidMvp\\app\\src\\main\\res\\mipmap-xxhdpi\\home_selected.png"
+    },
+    {
+        "merged": "D:\\StudioProjects\\XDroidMvp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\category_normal.png",
+        "source": "D:\\StudioProjects\\XDroidMvp\\app\\src\\main\\res\\mipmap-xxhdpi\\category_normal.png"
+    },
+    {
+        "merged": "D:\\StudioProjects\\XDroidMvp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\service_selected.png",
+        "source": "D:\\StudioProjects\\XDroidMvp\\app\\src\\main\\res\\mipmap-xxhdpi\\service_selected.png"
+    },
+    {
+        "merged": "D:\\StudioProjects\\XDroidMvp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\home_normal.png",
+        "source": "D:\\StudioProjects\\XDroidMvp\\app\\src\\main\\res\\mipmap-xxhdpi\\home_normal.png"
+    },
+    {
+        "merged": "D:\\StudioProjects\\XDroidMvp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\service_normal.png",
+        "source": "D:\\StudioProjects\\XDroidMvp\\app\\src\\main\\res\\mipmap-xxhdpi\\service_normal.png"
+    },
+    {
+        "merged": "D:\\StudioProjects\\XDroidMvp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\mine_normal.png",
+        "source": "D:\\StudioProjects\\XDroidMvp\\app\\src\\main\\res\\mipmap-xxhdpi\\mine_normal.png"
+    },
+    {
+        "merged": "D:\\StudioProjects\\XDroidMvp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\ic_launcher.png",
+        "source": "D:\\StudioProjects\\XDroidMvp\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    }
+]
