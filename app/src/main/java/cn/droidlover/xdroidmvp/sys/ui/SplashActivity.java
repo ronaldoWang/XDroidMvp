@@ -50,6 +50,7 @@ public class SplashActivity extends XActivity {
                 Router.newIntent(context)        //context表示当前上下文
                         .to(LoginActivity.class)    //to()指定目标context
                         .launch();
+                context.finish();
             }
 
             @Override

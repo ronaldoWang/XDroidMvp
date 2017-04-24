@@ -1,42 +1,26 @@
 package cn.droidlover.xdroidmvp.sys.model;
 
+import java.util.Date;
+
 import cn.droidlover.xdroidmvp.net.IModel;
 
 /**
  * Created by ronaldo on 2017/4/22.
  */
 
-public class UserModel implements IModel {
-    private User data;
-    private String message;
-    private String success;
-
-    public User getData() {
-        return data;
-    }
-
-    public void setData(User data) {
-        this.data = data;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getSuccess() {
-        return success;
-    }
-
-    public void setSuccess(String success) {
-        this.success = success;
-    }
-
+public class UserModel extends BaseModel implements IModel {
     public static class User {
         private String loginName;
+
+        private Date createDate;
+
+        public Date getCreateDate() {
+            return createDate;
+        }
+
+        public void setCreateDate(Date createDate) {
+            this.createDate = createDate;
+        }
 
         public String getLoginName() {
             return loginName;

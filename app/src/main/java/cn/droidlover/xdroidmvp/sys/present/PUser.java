@@ -1,13 +1,15 @@
 package cn.droidlover.xdroidmvp.sys.present;
 
-import cn.droidlover.xdroidmvp.sys.model.UserModel;
-import cn.droidlover.xdroidmvp.sys.net.Api;
-import cn.droidlover.xdroidmvp.sys.ui.LoginActivity;
-import cn.droidlover.xdroidmvp.log.XLog;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+
 import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
+import cn.droidlover.xdroidmvp.sys.model.UserModel;
+import cn.droidlover.xdroidmvp.sys.net.Api;
+import cn.droidlover.xdroidmvp.sys.ui.LoginActivity;
 
 /**
  * Created by ronaldo on 2017/4/21.
@@ -23,12 +25,18 @@ public class PUser extends XPresent<LoginActivity> {
                 .subscribe(new ApiSubscriber<UserModel>() {
                     @Override
                     protected void onFail(NetError error) {
+                        System.out.println("123");
 
                     }
 
                     @Override
                     public void onNext(UserModel userModel) {
-                        XLog.d("123");
+                        if (userModel.isSuccess()) {
+                            UserModel.User user = JSON.parseObject(JSONObject.toJSON(userModel.getData()).toString(), UserModel.User.class);
+                            getV().doLogin(user);
+                        } else {
+                            getV().showMessage(userModel.getMessage());
+                        }
                     }
                 });
     }

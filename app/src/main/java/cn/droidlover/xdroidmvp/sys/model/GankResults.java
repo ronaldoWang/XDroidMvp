@@ -6,7 +6,7 @@ import java.util.List;
  * Created by wanglei on 2016/12/10.
  */
 
-public class GankResults extends BaseModel {
+public class GankResults extends BaseModel1 {
 
     private List<Item> results;
 

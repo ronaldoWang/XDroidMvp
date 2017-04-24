@@ -1,40 +1,36 @@
 package cn.droidlover.xdroidmvp.sys.model;
 
-import cn.droidlover.xdroidmvp.net.IModel;
-
 /**
- * Created by wanglei on 2016/12/11.
+ * Created by ronaldo on 2017/4/24.
  */
 
-public class BaseModel implements IModel {
-    protected boolean error;
+public class BaseModel {
+    protected String message;
+    protected boolean success;
+    protected Object data;
 
-
-    public boolean isError() {
-        return error;
+    public Object getData() {
+        return data;
     }
 
-    public void setError(boolean error) {
-        this.error = error;
+    public void setData(Object data) {
+        this.data = data;
     }
 
-    @Override
-    public boolean isNull() {
-        return false;
+    public boolean isSuccess() {
+        return success;
     }
 
-    @Override
-    public boolean isAuthError() {
-        return false;
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 
-    @Override
-    public boolean isBizError() {
-        return error;
+    public String getMessage() {
+        return message;
     }
 
-    @Override
-    public String getErrorMsg() {
-        return null;
+    public void setMessage(String message) {
+        this.message = message;
     }
+
 }
