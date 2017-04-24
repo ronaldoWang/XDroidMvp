@@ -6,7 +6,7 @@ android {
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-        applicationId 'cn.droidlover.xdroidmvp.demo'
+        applicationId 'cn.droidlover.xdroidmvp.sys'
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode rootProject.ext.android.versionCode
@@ -28,7 +28,8 @@ dependencies {
     compile rootProject.ext.dependencies["avi-loading"]
     compile project(":mvp")
     compile 'com.android.support:design:23.4.0'
-    compile 'com.ycl.tabview.library:tabviewlibrary:1.0'
-    compile 'com.yinglan.alphatabs:library:1.0.3'
-    compile 'com.beardedhen:androidbootstrap:2.3.1'
+    compile rootProject.ext.dependencies["tabview"]
+    compile rootProject.ext.dependencies["alphatabs"]
+    compile rootProject.ext.dependencies["androidbootstrap"]
+    compile rootProject.ext.dependencies["android-common-utils"]
 }

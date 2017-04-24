@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.droidlover.xdroidmvp.demo">
+    package="cn.droidlover.xdroidmvp.sys">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".App"
+        android:name="cn.droidlover.xdroidmvp.sys.App"
         android:allowBackup="true"
         android:icon="@mipmap/xdroid_logo_128"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.SplashActivity"
+            android:name="cn.droidlover.xdroidmvp.sys.ui.SplashActivity"
             android:icon="@mipmap/xdroid_logo_128">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,10 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.MainActivity" />
-        <activity android:name=".ui.AboutActivity" />
-        <activity android:name=".ui.WebActivity" />
-        <activity android:name=".ui.LoginActivity"></activity>
+        <activity android:name="cn.droidlover.xdroidmvp.sys.ui.MainActivity" />
+        <activity android:name="cn.droidlover.xdroidmvp.sys.ui.AboutActivity" />
+        <activity android:name="cn.droidlover.xdroidmvp.sys.ui.WebActivity" />
+        <activity android:name="cn.droidlover.xdroidmvp.sys.ui.LoginActivity"></activity>
     </application>
 
 </manifest>
