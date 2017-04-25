@@ -7,9 +7,9 @@ import butterknife.BindView;
 import cn.droidlover.xdroidmvp.base.SimpleRecAdapter;
 import cn.droidlover.xdroidmvp.mvp.XFragment;
 import cn.droidlover.xdroidmvp.sys.R;
-import cn.droidlover.xdroidmvp.sys.adapter.MainAdapter;
+import cn.droidlover.xdroidmvp.sys.adapter.DevelopCustomerFragmentAdapter;
 import cn.droidlover.xdroidmvp.sys.model.DevelopCustomerModel;
-import cn.droidlover.xdroidmvp.sys.present.PMain;
+import cn.droidlover.xdroidmvp.sys.present.PDevelopCustomer;
 import cn.droidlover.xdroidmvp.sys.widget.StateView;
 import cn.droidlover.xrecyclerview.RecyclerItemCallback;
 import cn.droidlover.xrecyclerview.XRecyclerContentLayout;
@@ -19,31 +19,37 @@ import cn.droidlover.xrecyclerview.XRecyclerView;
  * Created by haoxi on 2017/4/25.
  */
 
-public class MainFragment extends XFragment<PMain> {
+public class DevelopCustomerFragment extends XFragment<PDevelopCustomer> {
     @BindView(R.id.contentLayout)
     XRecyclerContentLayout contentLayout;
     StateView errorView;
-    MainAdapter adapter;
+    DevelopCustomerFragmentAdapter adapter;
 
+    /**
+     * 获得adapter
+     *
+     * @return
+     */
     public SimpleRecAdapter getAdapter() {
         if (adapter == null) {
-            adapter = new MainAdapter(context);
-            adapter.setRecItemClick(new RecyclerItemCallback<DevelopCustomerModel.DevelopCustomer, MainAdapter.ViewHolder>() {
+            adapter = new DevelopCustomerFragmentAdapter(context);
+            adapter.setRecItemClick(new RecyclerItemCallback<DevelopCustomerModel.DevelopCustomer, DevelopCustomerFragmentAdapter.ViewHolder>() {
                 @Override
-                public void onItemClick(int position, DevelopCustomerModel.DevelopCustomer model, int tag, MainAdapter.ViewHolder holder) {
+                public void onItemClick(int position, DevelopCustomerModel.DevelopCustomer model, int tag, DevelopCustomerFragmentAdapter.ViewHolder holder) {
                     super.onItemClick(position, model, tag, holder);
-                    switch (tag) {
-                    }
+
                 }
             });
         }
         return adapter;
     }
 
+    /**
+     * 初始化Adapter
+     */
     private void initAdapter() {
         setLayoutManager(contentLayout.getRecyclerView());
-        contentLayout.getRecyclerView()
-                .setAdapter(getAdapter());
+        contentLayout.getRecyclerView().setAdapter(getAdapter());
         contentLayout.getRecyclerView()
                 .setOnRefreshAndLoadMoreListener(new XRecyclerView.OnRefreshAndLoadMoreListener() {
                     @Override
@@ -56,19 +62,37 @@ public class MainFragment extends XFragment<PMain> {
                         getP().loadData(page);
                     }
                 });
-
-
         if (errorView == null) {
             errorView = new StateView(context);
         }
         contentLayout.errorView(errorView);
         contentLayout.loadingView(View.inflate(getContext(), R.layout.view_loading, null));
-
         contentLayout.getRecyclerView().useDefLoadMoreView();
     }
 
-    public void setLayoutManager(XRecyclerView recyclerView) {
-        recyclerView.verticalLayoutManager(context);
+    /**
+     * 展示数据
+     *
+     * @param page  页码
+     * @param model 数据
+     */
+    public void showData(int page, DevelopCustomerModel model) {
+        if (page > 1) {
+            getAdapter().addData(model.getData());
+        } else {
+            getAdapter().setData(model.getData());
+        }
+
+        if (null != model.getData() && !model.getData().isEmpty() && model.getData().size() == 10) {
+            contentLayout.getRecyclerView().setPage(page, page + 1);
+        } else {
+            contentLayout.getRecyclerView().setPage(page, page);
+        }
+
+        if (getAdapter().getItemCount() < 1) {
+            contentLayout.showEmpty();
+            return;
+        }
     }
 
     @Override
@@ -82,13 +106,12 @@ public class MainFragment extends XFragment<PMain> {
         return R.layout.fragment_base_pager;
     }
 
-
     @Override
-    public PMain newP() {
-        return new PMain();
+    public PDevelopCustomer newP() {
+        return new PDevelopCustomer();
     }
 
-    public static MainFragment newInstance() {
-        return new MainFragment();
+    public static DevelopCustomerFragment newInstance() {
+        return new DevelopCustomerFragment();
     }
 }

@@ -15,9 +15,9 @@ import cn.droidlover.xdroidmvp.sys.model.DevelopCustomerModel;
  * Created by haoxi on 2017/4/25.
  */
 
-public class MainAdapter extends SimpleRecAdapter<DevelopCustomerModel.DevelopCustomer, MainAdapter.ViewHolder> {
+public class DevelopCustomerFragmentAdapter extends SimpleRecAdapter<DevelopCustomerModel.DevelopCustomer, DevelopCustomerFragmentAdapter.ViewHolder> {
 
-    public MainAdapter(Context context) {
+    public DevelopCustomerFragmentAdapter(Context context) {
         super(context);
     }
 

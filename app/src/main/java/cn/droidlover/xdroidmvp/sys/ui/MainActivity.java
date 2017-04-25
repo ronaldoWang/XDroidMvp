@@ -48,7 +48,7 @@ public class MainActivity extends XActivity {
 
         public MainAdapter(FragmentManager fm) {
             super(fm);
-            fragments.add(MainFragment.newInstance());
+            fragments.add(DevelopCustomerFragment.newInstance());
             fragments.add(GanhuoFragment.newInstance());
             fragments.add(GirlFragment.newInstance());
             fragments.add(GirlFragment.newInstance());

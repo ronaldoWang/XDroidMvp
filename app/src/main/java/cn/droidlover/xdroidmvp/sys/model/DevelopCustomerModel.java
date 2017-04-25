@@ -1,12 +1,14 @@
 package cn.droidlover.xdroidmvp.sys.model;
 
+import java.util.List;
+
 import cn.droidlover.xdroidmvp.net.IModel;
 
 /**
  * Created by haoxi on 2017/4/25.
  */
 
-public class DevelopCustomerModel extends BaseModel<DevelopCustomerModel.DevelopCustomer> implements IModel {
+public class DevelopCustomerModel extends BaseModel<List<DevelopCustomerModel.DevelopCustomer>> implements IModel {
 
     public static class DevelopCustomer {
         private String customerName; // 客户名称
