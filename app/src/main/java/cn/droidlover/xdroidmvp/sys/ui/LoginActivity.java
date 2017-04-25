@@ -1,6 +1,7 @@
 package cn.droidlover.xdroidmvp.sys.ui;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,9 +17,9 @@ import cn.droidlover.xdroidmvp.sys.present.PUser;
 
 public class LoginActivity extends XActivity<PUser> {
     @BindView(R.id.login_edit_name)
-    EditText et_uname;
+    EditText et_userName;
     @BindView(R.id.login_edit_pwd)
-    EditText et_upwd;
+    EditText et_userPwd;
     @BindView(R.id.login_cb_savepwd)
     CheckBox cb_save;
     @BindView(R.id.login_btn_login_online)
@@ -32,11 +33,11 @@ public class LoginActivity extends XActivity<PUser> {
     @Override
     public void initData(Bundle savedInstanceState) {
         sharedPref = SharedPref.getInstance(context);
-        userName = sharedPref.getString("uname", "");
-        userPwd = sharedPref.getString("upwd", "");
+        userName = sharedPref.getString("userName", "");
+        userPwd = sharedPref.getString("userPwd", "");
         boolean isChecked = sharedPref.getBoolean("isChecked", false);
-        et_uname.setText(userName);
-        et_upwd.setText(userPwd);
+        et_userName.setText(userName);
+        et_userPwd.setText(userPwd);
         cb_save.setChecked(isChecked);
     }
 
@@ -50,24 +51,40 @@ public class LoginActivity extends XActivity<PUser> {
         return new PUser();
     }
 
-    @OnClick(R.id.login_btn_login_online)
-    public void loginOnline() {
-        userName = et_uname.getText().toString();
-        userPwd = et_upwd.getText().toString();
-
-        getP().login(userName, userPwd);
+    /**
+     * 在线登录
+     */
+    @OnClick({R.id.login_btn_login_online, R.id.login_btn_login_unline})
+    public void click(View v) {
+        switch (v.getId()) {
+            case R.id.login_btn_login_online:
+                userName = et_userName.getText().toString();
+                userPwd = et_userPwd.getText().toString();
+                getP().login(userName, userPwd);
+                break;
+            case R.id.login_btn_login_unline:
+                break;
+            default:
+                break;
+        }
     }
 
+    /**
+     * 登录
+     *
+     * @param user
+     */
     public void doLogin(UserModel.User user) {
         if (cb_save.isChecked()) {
-            sharedPref.putString("uname", userName);
-            sharedPref.putString("upwd", userPwd);
+            sharedPref.putString("userName", userName);
+            sharedPref.putString("userPwd", userPwd);
             sharedPref.putBoolean("isChecked", true);
         } else {
-            sharedPref.putString("uname", "");
-            sharedPref.putString("upwd", "");
+            sharedPref.putString("userName", "");
+            sharedPref.putString("userPwd", "");
             sharedPref.putBoolean("isChecked", false);
         }
+        sharedPref.put("curUser", user);//设置当前登陆人
         Router.newIntent(context)
                 .to(MainActivity.class)    //to()指定目标context
                 .launch();

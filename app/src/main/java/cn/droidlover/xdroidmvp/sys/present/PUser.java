@@ -10,6 +10,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 import cn.droidlover.xdroidmvp.sys.model.UserModel;
 import cn.droidlover.xdroidmvp.sys.net.Api;
 import cn.droidlover.xdroidmvp.sys.ui.LoginActivity;
+import cn.droidlover.xdroidmvp.sys.utils.ToastUitl;
 
 /**
  * Created by ronaldo on 2017/4/21.
@@ -25,8 +26,7 @@ public class PUser extends XPresent<LoginActivity> {
                 .subscribe(new ApiSubscriber<UserModel>() {
                     @Override
                     protected void onFail(NetError error) {
-                        System.out.println("123");
-
+                        ToastUitl.showLong("登录失败");
                     }
 
                     @Override
@@ -35,7 +35,7 @@ public class PUser extends XPresent<LoginActivity> {
                             UserModel.User user = JSON.parseObject(JSONObject.toJSON(userModel.getData()).toString(), UserModel.User.class);
                             getV().doLogin(user);
                         } else {
-                            getV().showMessage(userModel.getMessage());
+                            ToastUitl.showLong(userModel.getMessage());
                         }
                     }
                 });

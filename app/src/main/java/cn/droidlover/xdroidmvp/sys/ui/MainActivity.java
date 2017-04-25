@@ -23,18 +23,18 @@ public class MainActivity extends XActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.mViewPager)
-    ViewPager mViewPger;
+    ViewPager mViewPager;
 
     @Override
     public void initData(Bundle savedInstanceState) {
         setSupportActionBar(toolbar);
         StatusBarCompat.translucentStatusBar(this);
         MainAdapter mainAdapter = new MainAdapter(getSupportFragmentManager());
-        mViewPger.setAdapter(mainAdapter);
-        mViewPger.addOnPageChangeListener(mainAdapter);
+        mViewPager.setAdapter(mainAdapter);
+        mViewPager.addOnPageChangeListener(mainAdapter);
 
         alphaTabsIndicator = (AlphaTabsIndicator) findViewById(R.id.alphaIndicator);
-        alphaTabsIndicator.setViewPager(mViewPger);
+        alphaTabsIndicator.setViewPager(mViewPager);
 
         alphaTabsIndicator.getTabView(0).showNumber(6);
         alphaTabsIndicator.getTabView(1).showNumber(888);
@@ -45,7 +45,6 @@ public class MainActivity extends XActivity {
     private class MainAdapter extends FragmentPagerAdapter implements ViewPager.OnPageChangeListener {
 
         private List<Fragment> fragments = new ArrayList<>();
-        private String[] titles = {"微信", "通讯录", "发现", "我"};
 
         public MainAdapter(FragmentManager fm) {
             super(fm);
@@ -91,8 +90,4 @@ public class MainActivity extends XActivity {
         return null;
     }
 
-    public int dip2px(float dpValue) {
-        final float scale = getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
-    }
 }

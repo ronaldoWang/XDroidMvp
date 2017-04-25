@@ -10,9 +10,20 @@ import cn.droidlover.xdroidmvp.net.IModel;
 
 public class UserModel extends BaseModel implements IModel {
     public static class User {
+
+        private String id;
+
         private String loginName;
 
         private Date createDate;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
 
         public Date getCreateDate() {
             return createDate;

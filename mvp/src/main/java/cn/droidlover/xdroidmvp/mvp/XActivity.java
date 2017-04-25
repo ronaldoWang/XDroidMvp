@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.view.Menu;
 import android.view.View;
 
-import com.litesuits.common.utils.DialogUtil;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
@@ -129,13 +128,5 @@ public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity 
     @Override
     public void bindEvent() {
 
-    }
-
-    public void showMessage(String title, String message) {
-        DialogUtil.dialogBuilder(this, title, message).show();
-    }
-
-    public void showMessage(String message) {
-        showMessage("提示", message);
     }
 }
