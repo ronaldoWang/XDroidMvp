@@ -31,6 +31,6 @@ dependencies {
     compile rootProject.ext.dependencies["tabview"]
     compile rootProject.ext.dependencies["alphatabs"]
     compile rootProject.ext.dependencies["androidbootstrap"]
-    compile rootProject.ext.dependencies["android-common-utils"]
-    compile 'com.alibaba:fastjson:1.2.31'
+    compile rootProject.ext.dependencies["fastjson"]
+    compile rootProject.ext.dependencies["utilcode"]
 }

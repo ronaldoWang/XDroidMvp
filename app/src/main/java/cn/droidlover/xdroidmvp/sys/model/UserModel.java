@@ -8,14 +8,14 @@ import cn.droidlover.xdroidmvp.net.IModel;
  * Created by ronaldo on 2017/4/22.
  */
 
-public class UserModel extends BaseModel implements IModel {
+public class UserModel extends BaseModel<UserModel.User> implements IModel {
     public static class User {
 
         private String id;
 
         private String loginName;
 
-        private Date createDate;
+        private String createDate;
 
         public String getId() {
             return id;
@@ -25,11 +25,11 @@ public class UserModel extends BaseModel implements IModel {
             this.id = id;
         }
 
-        public Date getCreateDate() {
+        public String getCreateDate() {
             return createDate;
         }
 
-        public void setCreateDate(Date createDate) {
+        public void setCreateDate(String createDate) {
             this.createDate = createDate;
         }
 

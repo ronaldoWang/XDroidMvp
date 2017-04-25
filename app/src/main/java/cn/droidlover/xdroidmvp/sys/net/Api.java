@@ -12,6 +12,7 @@ public class Api {
 
     private static GankService gankService;
     private static UserService userService;
+    private static MainService mainService;
 
     public static GankService getGankService() {
         if (gankService == null) {
@@ -34,4 +35,16 @@ public class Api {
         }
         return userService;
     }
+
+    public static MainService getMainService() {
+        if (mainService == null) {
+            synchronized (Api.class) {
+                if (mainService == null) {
+                    mainService = XApi.getInstance().getRetrofit(API_USER, true).create(MainService.class);
+                }
+            }
+        }
+        return mainService;
+    }
+
 }

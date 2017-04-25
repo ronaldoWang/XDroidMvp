@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 
 import com.beardedhen.androidbootstrap.TypefaceProvider;
+import com.blankj.utilcode.util.ToastUtils;
+import com.blankj.utilcode.util.Utils;
 
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.NetProvider;
@@ -25,6 +27,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         context = this;
+        Utils.init(context);
         TypefaceProvider.registerDefaultIconSets();
         XApi.registerProvider(new NetProvider() {
 

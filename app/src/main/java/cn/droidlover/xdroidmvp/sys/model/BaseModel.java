@@ -4,16 +4,16 @@ package cn.droidlover.xdroidmvp.sys.model;
  * Created by ronaldo on 2017/4/24.
  */
 
-public class BaseModel {
+public class BaseModel<T> {
     protected String message;
     protected boolean success;
-    protected Object data;
+    protected T data;
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 
