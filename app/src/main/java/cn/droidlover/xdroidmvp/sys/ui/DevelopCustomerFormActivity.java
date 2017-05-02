@@ -27,6 +27,6 @@ public class DevelopCustomerFormActivity extends XActivity<PDevelopCustomerForm>
     }
 
     public void showData(List<DevelopCustomerModel.DevelopCustomer> data) {
-
+        
     }
 }

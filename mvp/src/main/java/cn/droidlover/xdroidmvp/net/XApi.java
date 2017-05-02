@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import cn.droidlover.xdroidmvp.converter.FastJsonConverterFactory;
 import cn.droidlover.xdroidmvp.kit.Kits;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableTransformer;
@@ -17,7 +18,6 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by wanglei on 2016/12/24.
@@ -86,7 +86,7 @@ public class XApi {
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(getClient(baseUrl, provider))
-                .addConverterFactory(GsonConverterFactory.create());
+                .addConverterFactory(FastJsonConverterFactory.create());
         if (useRx) {
             builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         }
