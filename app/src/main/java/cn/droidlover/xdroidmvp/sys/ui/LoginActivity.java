@@ -6,6 +6,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.StringUtils;
+import com.blankj.utilcode.util.ToastUtils;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.cache.SharedPref;
@@ -60,6 +63,14 @@ public class LoginActivity extends XActivity<PUser> {
             case R.id.login_btn_login_online:
                 userName = et_userName.getText().toString();
                 userPwd = et_userPwd.getText().toString();
+                if (StringUtils.isTrimEmpty(userName)) {
+                    ToastUtils.showLongToast("用户名不能为空");
+                    return;
+                }
+                if (StringUtils.isTrimEmpty(userPwd)) {
+                    ToastUtils.showLongToast("密码不能为空");
+                    return;
+                }
                 getP().login(userName, userPwd);
                 break;
             case R.id.login_btn_login_unline:

@@ -15,6 +15,7 @@ import butterknife.Unbinder;
 import cn.droidlover.xdroidmvp.XDroidConf;
 import cn.droidlover.xdroidmvp.event.BusProvider;
 import cn.droidlover.xdroidmvp.kit.KnifeKit;
+import cn.droidlover.xrecyclerview.XRecyclerView;
 
 /**
  * Created by wanglei on 2016/12/29.
@@ -31,7 +32,6 @@ public abstract class XFragment<P extends IPresent> extends RxFragment implement
     private RxPermissions rxPermissions;
 
     private Unbinder unbinder;
-
 
     @Nullable
     @Override
@@ -122,6 +122,10 @@ public abstract class XFragment<P extends IPresent> extends RxFragment implement
         rxPermissions = new RxPermissions(getActivity());
         rxPermissions.setLogging(XDroidConf.DEV);
         return rxPermissions;
+    }
+
+    public void setLayoutManager(XRecyclerView recyclerView) {
+        recyclerView.verticalLayoutManager(context);
     }
 
     @Override
