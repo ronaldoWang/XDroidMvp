@@ -16,7 +16,7 @@ import cn.droidlover.xdroidmvp.sys.model.DevelopCustomerModel;
  */
 
 public class DevelopCustomerFragmentAdapter extends SimpleRecAdapter<DevelopCustomerModel.DevelopCustomer, DevelopCustomerFragmentAdapter.ViewHolder> {
-
+    public static final int TAG_VIEW = 0;
     public DevelopCustomerFragmentAdapter(Context context) {
         super(context);
     }
@@ -32,15 +32,15 @@ public class DevelopCustomerFragmentAdapter extends SimpleRecAdapter<DevelopCust
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        final DevelopCustomerModel.DevelopCustomer developCustomer = data.get(position);
-        holder.tvItem.setText(developCustomer.getCustomerName());
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
+        final DevelopCustomerModel.DevelopCustomer item = data.get(position);
+        holder.tvItem.setText(item.getCustomerName());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (getRecItemClick() != null) {
-                    //getRecItemClick().onItemClick(position, item, TAG_VIEW, holder);
+                    getRecItemClick().onItemClick(position, item, TAG_VIEW, holder);
                 }
             }
         });

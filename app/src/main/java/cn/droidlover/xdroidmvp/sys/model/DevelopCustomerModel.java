@@ -16,6 +16,7 @@ public class DevelopCustomerModel extends BaseModel<List<DevelopCustomerModel.De
         private String sex; // 性别
         private String mobilePhone; // 手机
 
+
         public String getCustomerName() {
             return customerName;
         }

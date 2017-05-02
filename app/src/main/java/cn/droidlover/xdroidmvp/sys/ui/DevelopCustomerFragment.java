@@ -6,6 +6,7 @@ import android.view.View;
 import butterknife.BindView;
 import cn.droidlover.xdroidmvp.base.SimpleRecAdapter;
 import cn.droidlover.xdroidmvp.mvp.XFragment;
+import cn.droidlover.xdroidmvp.router.Router;
 import cn.droidlover.xdroidmvp.sys.R;
 import cn.droidlover.xdroidmvp.sys.adapter.DevelopCustomerFragmentAdapter;
 import cn.droidlover.xdroidmvp.sys.model.DevelopCustomerModel;
@@ -37,7 +38,8 @@ public class DevelopCustomerFragment extends XFragment<PDevelopCustomer> {
                 @Override
                 public void onItemClick(int position, DevelopCustomerModel.DevelopCustomer model, int tag, DevelopCustomerFragmentAdapter.ViewHolder holder) {
                     super.onItemClick(position, model, tag, holder);
-
+                    String id = model.getCustomerNo();
+                    Router.newIntent(context).to(DevelopCustomerFormActivity.class).putString("id", id).launch();
                 }
             });
         }

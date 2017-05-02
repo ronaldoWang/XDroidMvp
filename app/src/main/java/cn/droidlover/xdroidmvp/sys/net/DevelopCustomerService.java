@@ -13,4 +13,7 @@ public interface DevelopCustomerService {
 
     @GET("frontapi/developCustomer/queryList")
     Flowable<DevelopCustomerModel> query(@Query("pageNo") int pageNum);
+
+    @GET("frontapi/developCustomer/queryOne")
+    Flowable<DevelopCustomerModel> queryOne(@Query("customerNo") String id);
 }
