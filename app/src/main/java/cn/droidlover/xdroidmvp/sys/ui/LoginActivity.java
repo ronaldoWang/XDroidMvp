@@ -99,6 +99,6 @@ public class LoginActivity extends XActivity<PUser> {
         Router.newIntent(context)
                 .to(MainActivity.class)    //to()指定目标context
                 .launch();
-        //context.finish();
+        context.finish();
     }
 }

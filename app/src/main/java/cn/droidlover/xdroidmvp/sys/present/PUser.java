@@ -32,8 +32,7 @@ public class PUser extends XPresent<LoginActivity> {
                     @Override
                     public void onNext(UserModel userModel) {
                         if (userModel.isSuccess()) {
-                            UserModel.User user = JSON.parseObject(JSONObject.toJSON(userModel.getData()).toString(), UserModel.User.class);
-                            getV().doLogin(user);
+                            getV().doLogin(userModel.getData());
                         } else {
                             ToastUtils.showLongToast(userModel.getMessage());
                         }
