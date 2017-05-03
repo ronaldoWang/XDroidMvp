@@ -13,4 +13,78 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_scrollFlags="scroll|enterAlways"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/more_item_top_background"
+        android:orientation="horizontal"
+        android:padding="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="客户名称"
+            android:textColor="black"
+            android:textSize="@dimen/font_normal" />
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/edit_customer_customerName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            app:bootstrapBrand="success"
+            app:roundedCorners="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/more_item_top_background"
+        android:orientation="horizontal"
+        android:padding="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="性        别"
+            android:textColor="black"
+            android:textSize="@dimen/font_normal" />
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/edit_customer_sex"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            app:bootstrapBrand="success"
+            app:roundedCorners="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/more_item_top_background"
+        android:orientation="horizontal"
+        android:padding="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="手机手机"
+            android:textColor="black"
+            android:textSize="@dimen/font_normal" />
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/edit_customer_mobilePhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            app:bootstrapBrand="success"
+            app:roundedCorners="true" />
+    </LinearLayout>
+
 </LinearLayout>
