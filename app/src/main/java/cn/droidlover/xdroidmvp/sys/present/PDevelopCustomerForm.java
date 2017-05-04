@@ -27,7 +27,13 @@ public class PDevelopCustomerForm extends XPresent<DevelopCustomerFormActivity> 
 
                     @Override
                     public void onNext(DevelopCustomerModel developCustomerModel) {
-                        getV().showData(developCustomerModel.getData());
+                        if (developCustomerModel.isSuccess()) {
+                            if (!developCustomerModel.getData().isEmpty()) {
+                                getV().showData(developCustomerModel.getData().get(0));
+                            }
+                        } else {
+
+                        }
                     }
                 });
     }
