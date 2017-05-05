@@ -37,4 +37,21 @@ public class PDevelopCustomerForm extends XPresent<DevelopCustomerFormActivity> 
                     }
                 });
     }
+
+    public void save(DevelopCustomerModel.DevelopCustomer data) {
+        Api.getDevelopCustomerService().save(data)
+                .compose(XApi.<DevelopCustomerModel>getApiTransformer())
+                .compose(XApi.<DevelopCustomerModel>getScheduler())
+                .compose(getV().<DevelopCustomerModel>bindToLifecycle())
+                .subscribe(new ApiSubscriber<DevelopCustomerModel>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        System.out.println("==========");
+                    }
+
+                    @Override
+                    public void onNext(DevelopCustomerModel developCustomerModel) {
+                    }
+                });
+    }
 }

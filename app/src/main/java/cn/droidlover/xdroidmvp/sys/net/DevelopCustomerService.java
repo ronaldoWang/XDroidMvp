@@ -16,4 +16,6 @@ public interface DevelopCustomerService {
 
     @GET("frontapi/developCustomer/queryOne")
     Flowable<DevelopCustomerModel> queryOne(@Query("customerNo") String id);
+
+    Flowable<DevelopCustomerModel> save(DevelopCustomerModel.DevelopCustomer data);
 }
