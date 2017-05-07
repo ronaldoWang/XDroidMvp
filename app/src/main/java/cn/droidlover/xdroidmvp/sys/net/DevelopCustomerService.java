@@ -2,7 +2,9 @@ package cn.droidlover.xdroidmvp.sys.net;
 
 import cn.droidlover.xdroidmvp.sys.model.DevelopCustomerModel;
 import io.reactivex.Flowable;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
@@ -17,5 +19,6 @@ public interface DevelopCustomerService {
     @GET("frontapi/developCustomer/queryOne")
     Flowable<DevelopCustomerModel> queryOne(@Query("customerNo") String id);
 
-    Flowable<DevelopCustomerModel> save(DevelopCustomerModel.DevelopCustomer data);
+    @POST("frontapi/developCustomer/save")
+    Flowable<DevelopCustomerModel> save(@Body DevelopCustomerModel.DevelopCustomer data);
 }
