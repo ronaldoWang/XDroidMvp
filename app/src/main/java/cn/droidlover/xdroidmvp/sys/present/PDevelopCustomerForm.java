@@ -1,15 +1,5 @@
 package cn.droidlover.xdroidmvp.sys.present;
 
-import android.os.Environment;
-
-import com.blankj.utilcode.util.FileUtils;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import cn.droidlover.xdroidmvp.kit.Kits;
 import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
@@ -49,19 +39,19 @@ public class PDevelopCustomerForm extends XPresent<DevelopCustomerFormActivity> 
     }
 
     public void save(DevelopCustomerModel.DevelopCustomer data) {
-        Map<String, String> map = new HashMap<>();
-        map.put("customerName", data.getCustomerName());
-        java.io.File file = new java.io.File(Environment
-                .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-                + "/Filename.xml");
-        try {
-            file.createNewFile();
-            FileUtils.writeFileFromIS(file, getV().getResources().getAssets().open("123.txt"), true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Api.getDevelopCustomerService().save(map, file)
+//        java.io.File file = new java.io.File("/sdcard/Test/123.txt");
+//        FileUtils.createOrExistsFile(file);
+//        try {
+//            FileUtils.writeFileFromIS(file, getV().getResources().getAssets().open("123.txt"), true);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println(file.length());
+//        RequestBody requestFile =
+//                RequestBody.create(MediaType.parse("application/otcet-stream"), file);
+//        MultipartBody.Part body =
+//                MultipartBody.Part.createFormData("aFile", file.getName(), requestFile);
+        Api.getDevelopCustomerService().save(data.getDataMap())
                 .compose(XApi.<DevelopCustomerModel>getApiTransformer())
                 .compose(XApi.<DevelopCustomerModel>getScheduler())
                 .compose(getV().<DevelopCustomerModel>bindToLifecycle())
@@ -73,6 +63,7 @@ public class PDevelopCustomerForm extends XPresent<DevelopCustomerFormActivity> 
 
                     @Override
                     public void onNext(DevelopCustomerModel developCustomerModel) {
+
                     }
                 });
     }

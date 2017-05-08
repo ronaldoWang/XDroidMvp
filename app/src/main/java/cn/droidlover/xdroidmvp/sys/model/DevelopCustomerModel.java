@@ -1,6 +1,8 @@
 package cn.droidlover.xdroidmvp.sys.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import cn.droidlover.xdroidmvp.net.IModel;
 
@@ -47,6 +49,15 @@ public class DevelopCustomerModel extends BaseModel<List<DevelopCustomerModel.De
 
         public void setMobilePhone(String mobilePhone) {
             this.mobilePhone = mobilePhone;
+        }
+
+        public Map<String, Object> getDataMap() {
+            Map<String, Object> map = new HashMap<>();
+            map.put("customerName", customerName);
+            map.put("customerNo", customerNo);
+            map.put("sex", sex);
+            map.put("mobilePhone", mobilePhone);
+            return map;
         }
     }
 

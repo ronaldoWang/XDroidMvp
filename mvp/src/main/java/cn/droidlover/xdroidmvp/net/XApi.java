@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import cn.droidlover.xdroidmvp.converter.FastJsonConverterFactory;
-import cn.droidlover.xdroidmvp.converter.FileRequestBodyConverterFactory;
 import cn.droidlover.xdroidmvp.kit.Kits;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableTransformer;
@@ -87,8 +86,8 @@ public class XApi {
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(getClient(baseUrl, provider))
-                .addConverterFactory(FastJsonConverterFactory.create())
-                .addConverterFactory(FileRequestBodyConverterFactory.create());
+                .addConverterFactory(FastJsonConverterFactory.create());
+
         if (useRx) {
             builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         }

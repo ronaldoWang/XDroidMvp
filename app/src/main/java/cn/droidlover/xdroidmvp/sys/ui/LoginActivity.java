@@ -17,6 +17,7 @@ import cn.droidlover.xdroidmvp.router.Router;
 import cn.droidlover.xdroidmvp.sys.R;
 import cn.droidlover.xdroidmvp.sys.model.UserModel;
 import cn.droidlover.xdroidmvp.sys.present.PUser;
+import cn.droidlover.xdroidmvp.sys.widget.LoadingDialog;
 
 public class LoginActivity extends XActivity<PUser> {
     @BindView(R.id.login_edit_name)
@@ -71,6 +72,7 @@ public class LoginActivity extends XActivity<PUser> {
                     ToastUtils.showLongToast("密码不能为空");
                     return;
                 }
+                LoadingDialog.showDialogForLoading(context);
                 getP().login(userName, userPwd);
                 break;
             case R.id.login_btn_login_unline:

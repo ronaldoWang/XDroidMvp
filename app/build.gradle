@@ -33,6 +33,4 @@ dependencies {
     compile rootProject.ext.dependencies["androidbootstrap"]
     compile rootProject.ext.dependencies["fastjson"]
     compile rootProject.ext.dependencies["utilcode"]
-    compile 'com.yanzhenjie.nohttp:nohttp:1.1.1'
-    compile 'com.yanzhenjie.nohttp:okhttp:1.1.1'
 }
