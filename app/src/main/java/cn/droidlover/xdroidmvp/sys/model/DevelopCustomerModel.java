@@ -1,6 +1,5 @@
 package cn.droidlover.xdroidmvp.sys.model;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +20,7 @@ public class DevelopCustomerModel extends BaseModel<List<DevelopCustomerModel.De
         private String summary; // 概况
         private String type;// 客户类型
         private String email;// 邮箱
-        private Date recentDate;// 最近一次沟通时间
+        private String recentDate;// 最近一次沟通时间
         private String recentResult;// 最近一次沟通内容
         private String search;// 搜索内容（客户名称|手机|概况|客户类型）
 
@@ -82,11 +81,11 @@ public class DevelopCustomerModel extends BaseModel<List<DevelopCustomerModel.De
             this.email = email;
         }
 
-        public Date getRecentDate() {
+        public String getRecentDate() {
             return recentDate;
         }
 
-        public void setRecentDate(Date recentDate) {
+        public void setRecentDate(String recentDate) {
             this.recentDate = recentDate;
         }
 

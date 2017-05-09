@@ -1,9 +1,12 @@
 package cn.droidlover.xdroidmvp.sys.present;
 
+import com.blankj.utilcode.util.ToastUtils;
+
 import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
+import cn.droidlover.xdroidmvp.router.Router;
 import cn.droidlover.xdroidmvp.sys.model.DevelopCustomerModel;
 import cn.droidlover.xdroidmvp.sys.net.Api;
 import cn.droidlover.xdroidmvp.sys.ui.DevelopCustomerFormActivity;
@@ -22,7 +25,7 @@ public class PDevelopCustomerForm extends XPresent<DevelopCustomerFormActivity> 
                 .subscribe(new ApiSubscriber<DevelopCustomerModel>() {
                     @Override
                     protected void onFail(NetError error) {
-                        System.out.println("==========");
+                        ToastUtils.showShortToast(error.getMessage());
                     }
 
                     @Override
@@ -32,7 +35,7 @@ public class PDevelopCustomerForm extends XPresent<DevelopCustomerFormActivity> 
                                 getV().showData(developCustomerModel.getData().get(0));
                             }
                         } else {
-
+                            ToastUtils.showShortToast(developCustomerModel.getMessage());
                         }
                     }
                 });
@@ -58,12 +61,17 @@ public class PDevelopCustomerForm extends XPresent<DevelopCustomerFormActivity> 
                 .subscribe(new ApiSubscriber<DevelopCustomerModel>() {
                     @Override
                     protected void onFail(NetError error) {
-                        System.out.println("==========");
+                        ToastUtils.showShortToast(error.getMessage());
                     }
 
                     @Override
                     public void onNext(DevelopCustomerModel developCustomerModel) {
-
+                        if (developCustomerModel.isSuccess()) {
+                            ToastUtils.showShortToast(developCustomerModel.getMessage());
+                            Router.pop(getV());
+                        } else {
+                            ToastUtils.showShortToast(developCustomerModel.getMessage());
+                        }
                     }
                 });
     }

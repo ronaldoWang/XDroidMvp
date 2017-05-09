@@ -38,8 +38,10 @@ public class OrmLiteManager {
                 return false;
             }
         });
-        for (File dbfile : dbFiles) {
-            dbfile.delete();
+        if (null != dbFiles) {
+            for (File dbfile : dbFiles) {
+                dbfile.delete();
+            }
         }
         copyRawDB(context);
     }
