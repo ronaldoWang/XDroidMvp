@@ -33,4 +33,5 @@ dependencies {
     compile rootProject.ext.dependencies["androidbootstrap"]
     compile rootProject.ext.dependencies["fastjson"]
     compile rootProject.ext.dependencies["utilcode"]
+    compile rootProject.ext.dependencies["ui-form"]
 }
