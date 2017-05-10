@@ -17,6 +17,7 @@ import cn.droidlover.xdroidmvp.sys.model.DevelopCustomerModel;
 
 public class DevelopCustomerFragmentAdapter extends SimpleRecAdapter<DevelopCustomerModel.DevelopCustomer, DevelopCustomerFragmentAdapter.ViewHolder> {
     public static final int TAG_VIEW = 0;
+
     public DevelopCustomerFragmentAdapter(Context context) {
         super(context);
     }
@@ -42,6 +43,13 @@ public class DevelopCustomerFragmentAdapter extends SimpleRecAdapter<DevelopCust
                 if (getRecItemClick() != null) {
                     getRecItemClick().onItemClick(position, item, TAG_VIEW, holder);
                 }
+            }
+        });
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                getRecItemClick().onItemLongClick(position, item, TAG_VIEW, holder);
+                return false;
             }
         });
     }

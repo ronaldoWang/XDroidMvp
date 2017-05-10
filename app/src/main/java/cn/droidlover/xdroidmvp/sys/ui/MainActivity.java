@@ -6,7 +6,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.yinglan.alphatabs.AlphaTabsIndicator;
 
 import java.util.ArrayList;
@@ -89,5 +91,27 @@ public class MainActivity extends XActivity {
     public Object newP() {
         return null;
     }
+
+    //双击手机返回键退出<<<<<<<<<<<<<<<<<<<<<
+    private long firstTime = 0;//第一次返回按钮计时
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                long secondTime = System.currentTimeMillis();
+                if (secondTime - firstTime > 2000) {
+                    ToastUtils.showShortToast("再按一次退出");
+                    firstTime = secondTime;
+                } else {//完全退出
+                    moveTaskToBack(false);//应用退到后台
+                    System.exit(0);
+                }
+                return true;
+        }
+
+        return super.onKeyUp(keyCode, event);
+    }
+    //双击手机返回键退出>>>>>>>>>>>>>>>>>>>>>
 
 }

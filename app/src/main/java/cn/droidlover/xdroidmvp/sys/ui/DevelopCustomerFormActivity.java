@@ -1,6 +1,8 @@
 package cn.droidlover.xdroidmvp.sys.ui;
 
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -17,6 +19,7 @@ import java.text.SimpleDateFormat;
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.mvp.XActivity;
+import cn.droidlover.xdroidmvp.router.Router;
 import cn.droidlover.xdroidmvp.sys.R;
 import cn.droidlover.xdroidmvp.sys.model.DevelopCustomerModel;
 import cn.droidlover.xdroidmvp.sys.model.sys.Dict;
@@ -56,6 +59,10 @@ public class DevelopCustomerFormActivity extends XActivity<PDevelopCustomerForm>
     @BindView(R.id.spinner_customer_type)
     Spinner spinner_type;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+
     DevelopCustomerModel.DevelopCustomer data;
     ArrayAdapter<Dict> sexAdapter;// 性别
     ArrayAdapter<Dict> typeAdapter;//客户类别
@@ -65,13 +72,14 @@ public class DevelopCustomerFormActivity extends XActivity<PDevelopCustomerForm>
 
     @Override
     public void initData(Bundle savedInstanceState) {
-        initView();
         controller.showLoading();
         String id = getIntent().getStringExtra("id");
         getP().queryOne(id);
     }
 
-    private void initView() {
+    @Override
+    public void initView() {
+        setSupportActionBar(toolbar);
         controller.loadingView(View.inflate(context, R.layout.view_loading, null));
         sexAdapter = new ArrayAdapter<Dict>(this,
                 R.layout.simple_spinner_item,
@@ -124,6 +132,15 @@ public class DevelopCustomerFormActivity extends XActivity<PDevelopCustomerForm>
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            Router.pop(context);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void doSave() {
         data.setCustomerName(et_customerName.getText().toString());
         data.setMobilePhone(et_mobilePhone.getText().toString());
@@ -149,4 +166,5 @@ public class DevelopCustomerFormActivity extends XActivity<PDevelopCustomerForm>
         et_recentResult.setText(data.getRecentResult());
         controller.showContent();
     }
+
 }

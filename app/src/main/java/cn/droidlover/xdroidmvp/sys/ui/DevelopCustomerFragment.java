@@ -2,6 +2,11 @@ package cn.droidlover.xdroidmvp.sys.ui;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
+
+import com.rey.material.app.Dialog;
+import com.rey.material.app.DialogFragment;
+import com.rey.material.app.SimpleDialog;
 
 import butterknife.BindView;
 import cn.droidlover.xdroidmvp.base.SimpleRecAdapter;
@@ -11,6 +16,7 @@ import cn.droidlover.xdroidmvp.sys.R;
 import cn.droidlover.xdroidmvp.sys.adapter.DevelopCustomerFragmentAdapter;
 import cn.droidlover.xdroidmvp.sys.model.DevelopCustomerModel;
 import cn.droidlover.xdroidmvp.sys.present.PDevelopCustomer;
+import cn.droidlover.xdroidmvp.sys.widget.LoadingDialog;
 import cn.droidlover.xdroidmvp.sys.widget.StateView;
 import cn.droidlover.xrecyclerview.RecyclerItemCallback;
 import cn.droidlover.xrecyclerview.XRecyclerContentLayout;
@@ -23,7 +29,6 @@ import cn.droidlover.xrecyclerview.XRecyclerView;
 public class DevelopCustomerFragment extends XFragment<PDevelopCustomer> {
     @BindView(R.id.contentLayout)
     XRecyclerContentLayout contentLayout;
-    StateView errorView;
     DevelopCustomerFragmentAdapter adapter;
 
     /**
@@ -41,7 +46,30 @@ public class DevelopCustomerFragment extends XFragment<PDevelopCustomer> {
                     String id = model.getCustomerNo();
                     Router.newIntent(context).to(DevelopCustomerFormActivity.class).putString("id", id).launch();
                 }
+
+                @Override
+                public void onItemLongClick(int position, final DevelopCustomerModel.DevelopCustomer model, int tag, DevelopCustomerFragmentAdapter.ViewHolder holder) {
+                    super.onItemLongClick(position, model, tag, holder);
+                    Dialog.Builder builder = new SimpleDialog.Builder(R.style.SimpleDialog) {
+                        @Override
+                        public void onPositiveActionClicked(DialogFragment fragment) {
+                            super.onPositiveActionClicked(fragment);
+                            getP().delete(model.getCustomerNo());
+                        }
+
+                        @Override
+                        public void onNegativeActionClicked(DialogFragment fragment) {
+                            super.onNegativeActionClicked(fragment);
+                        }
+                    };
+                    ((SimpleDialog.Builder) builder).message("是否删除?")
+                            .positiveAction("确认")
+                            .negativeAction("取消");
+                    DialogFragment fragment = DialogFragment.newInstance(builder);
+                    fragment.show(getFragmentManager(), null);
+                }
             });
+
         }
         return adapter;
     }
@@ -64,10 +92,6 @@ public class DevelopCustomerFragment extends XFragment<PDevelopCustomer> {
                         getP().loadData(page);
                     }
                 });
-        if (errorView == null) {
-            errorView = new StateView(context);
-        }
-        contentLayout.errorView(errorView);
         contentLayout.loadingView(View.inflate(getContext(), R.layout.view_loading, null));
         contentLayout.getRecyclerView().useDefLoadMoreView();
     }
@@ -100,6 +124,10 @@ public class DevelopCustomerFragment extends XFragment<PDevelopCustomer> {
     @Override
     public void initData(Bundle savedInstanceState) {
         initAdapter();
+        loadData();
+    }
+
+    public void loadData() {
         getP().loadData(1);
     }
 

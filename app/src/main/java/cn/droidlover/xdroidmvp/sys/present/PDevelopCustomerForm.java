@@ -10,6 +10,7 @@ import cn.droidlover.xdroidmvp.router.Router;
 import cn.droidlover.xdroidmvp.sys.model.DevelopCustomerModel;
 import cn.droidlover.xdroidmvp.sys.net.Api;
 import cn.droidlover.xdroidmvp.sys.ui.DevelopCustomerFormActivity;
+import cn.droidlover.xdroidmvp.sys.widget.LoadingDialog;
 
 /**
  * Created by haoxi on 2017/4/25.
@@ -17,6 +18,11 @@ import cn.droidlover.xdroidmvp.sys.ui.DevelopCustomerFormActivity;
 
 public class PDevelopCustomerForm extends XPresent<DevelopCustomerFormActivity> {
 
+    /**
+     * 查询单个
+     *
+     * @param id
+     */
     public void queryOne(final String id) {
         Api.getDevelopCustomerService().queryOne(id)
                 .compose(XApi.<DevelopCustomerModel>getApiTransformer())
@@ -41,19 +47,13 @@ public class PDevelopCustomerForm extends XPresent<DevelopCustomerFormActivity> 
                 });
     }
 
+    /**
+     * 保存对象
+     *
+     * @param data
+     */
     public void save(DevelopCustomerModel.DevelopCustomer data) {
-//        java.io.File file = new java.io.File("/sdcard/Test/123.txt");
-//        FileUtils.createOrExistsFile(file);
-//        try {
-//            FileUtils.writeFileFromIS(file, getV().getResources().getAssets().open("123.txt"), true);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        System.out.println(file.length());
-//        RequestBody requestFile =
-//                RequestBody.create(MediaType.parse("application/otcet-stream"), file);
-//        MultipartBody.Part body =
-//                MultipartBody.Part.createFormData("aFile", file.getName(), requestFile);
+        LoadingDialog.showDialogForLoading(getV());//加载框
         Api.getDevelopCustomerService().save(data.getDataMap())
                 .compose(XApi.<DevelopCustomerModel>getApiTransformer())
                 .compose(XApi.<DevelopCustomerModel>getScheduler())
@@ -61,11 +61,13 @@ public class PDevelopCustomerForm extends XPresent<DevelopCustomerFormActivity> 
                 .subscribe(new ApiSubscriber<DevelopCustomerModel>() {
                     @Override
                     protected void onFail(NetError error) {
-                        ToastUtils.showShortToast(error.getMessage());
+                        LoadingDialog.cancelDialogForLoading();
+                        ToastUtils.showShortToast("保存失败");
                     }
 
                     @Override
                     public void onNext(DevelopCustomerModel developCustomerModel) {
+                        LoadingDialog.cancelDialogForLoading();
                         if (developCustomerModel.isSuccess()) {
                             ToastUtils.showShortToast(developCustomerModel.getMessage());
                             Router.pop(getV());

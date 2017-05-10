@@ -1,20 +1,12 @@
-12312312312312322222222222222
-123
-12
-31
-23
-12
-31
-23
-12
-3
-12
-312
-3
-123
-12
-3
-123
-12
-3
-1233333333333
+//        java.io.File file = new java.io.File("/sdcard/Test/123.txt");
+//        FileUtils.createOrExistsFile(file);
+//        try {
+//            FileUtils.writeFileFromIS(file, getV().getResources().getAssets().open("123.txt"), true);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println(file.length());
+//        RequestBody requestFile =
+//                RequestBody.create(MediaType.parse("application/otcet-stream"), file);
+//        MultipartBody.Part body =
+//                MultipartBody.Part.createFormData("aFile", file.getName(), requestFile);

@@ -4,6 +4,7 @@ import java.util.Map;
 
 import cn.droidlover.xdroidmvp.sys.model.DevelopCustomerModel;
 import io.reactivex.Flowable;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -23,4 +24,7 @@ public interface DevelopCustomerService {
 
     @POST("frontapi/developCustomer/save")
     Flowable<DevelopCustomerModel> save(@QueryMap(encoded = true) Map<String, Object> map);
+
+    @DELETE("frontapi/developCustomer/delete")
+    Flowable<DevelopCustomerModel> delete(@Query("customerNo") String customerNo);
 }
