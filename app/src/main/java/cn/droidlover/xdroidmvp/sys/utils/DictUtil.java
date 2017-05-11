@@ -3,6 +3,8 @@ package cn.droidlover.xdroidmvp.sys.utils;
 import android.content.Context;
 import android.widget.ArrayAdapter;
 
+import com.blankj.utilcode.util.StringUtils;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -68,6 +70,26 @@ public class DictUtil {
             }
         }
         return -1;
+    }
+
+    /**
+     * 根据type ，value获得label
+     *
+     * @param context
+     * @param type         字典类型
+     * @param value        key
+     * @param defaultLabel 默认label
+     * @return
+     */
+    public static String getDictLabel(Context context, String type, String value, String defaultLabel) {
+        if (StringUtils.isTrimEmpty(type) && StringUtils.isTrimEmpty(value)) {
+            for (Dict dict : getDictList(context, type)) {
+                if (type.equals(dict.getType()) && value.equals(dict.getValue())) {
+                    return dict.getLabel();
+                }
+            }
+        }
+        return defaultLabel;
     }
 
     /**

@@ -27,7 +27,7 @@ import cn.droidlover.xdroidmvp.sys.present.PDevelopCustomerForm;
 import cn.droidlover.xdroidmvp.sys.utils.DictUtil;
 import cn.droidlover.xstatecontroller.XStateController;
 
-public class DevelopCustomerFormActivity extends XActivity<PDevelopCustomerForm> {
+public class DevelopCustomerFormEditActivity extends XActivity<PDevelopCustomerForm> {
 
     @BindView(R.id.edit_customer_customerName)
     EditText et_customerName;
