@@ -44,7 +44,7 @@ public class DevelopCustomerFragment extends XFragment<PDevelopCustomer> {
                 public void onItemClick(int position, DevelopCustomerModel.DevelopCustomer model, int tag, DevelopCustomerFragmentAdapter.ViewHolder holder) {
                     super.onItemClick(position, model, tag, holder);
                     String id = model.getCustomerNo();
-                    Router.newIntent(context).to(DevelopCustomerFormActivity.class).putString("id", id).launch();
+                    Router.newIntent(context).to(DevelopCustomerFormViewActivity.class).putString("id", id).launch();
                 }
 
                 @Override

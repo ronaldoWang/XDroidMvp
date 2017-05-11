@@ -9,14 +9,14 @@ import cn.droidlover.xdroidmvp.net.XApi;
 import cn.droidlover.xdroidmvp.router.Router;
 import cn.droidlover.xdroidmvp.sys.model.DevelopCustomerModel;
 import cn.droidlover.xdroidmvp.sys.net.Api;
-import cn.droidlover.xdroidmvp.sys.ui.DevelopCustomerFormActivity;
+import cn.droidlover.xdroidmvp.sys.ui.DevelopCustomerFormEditActivity;
 import cn.droidlover.xdroidmvp.sys.widget.LoadingDialog;
 
 /**
  * Created by haoxi on 2017/4/25.
  */
 
-public class PDevelopCustomerForm extends XPresent<DevelopCustomerFormActivity> {
+public class PDevelopCustomerForm extends XPresent<DevelopCustomerFormEditActivity> {
 
     /**
      * 查询单个
