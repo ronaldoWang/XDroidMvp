@@ -82,7 +82,7 @@ public class DictUtil {
      * @return
      */
     public static String getDictLabel(Context context, String type, String value, String defaultLabel) {
-        if (StringUtils.isTrimEmpty(type) && StringUtils.isTrimEmpty(value)) {
+        if (!StringUtils.isTrimEmpty(type) && !StringUtils.isTrimEmpty(value)) {
             for (Dict dict : getDictList(context, type)) {
                 if (type.equals(dict.getType()) && value.equals(dict.getValue())) {
                     return dict.getLabel();

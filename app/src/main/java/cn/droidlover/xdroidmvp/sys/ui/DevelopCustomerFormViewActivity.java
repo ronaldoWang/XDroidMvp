@@ -1,11 +1,15 @@
 package cn.droidlover.xdroidmvp.sys.ui;
 
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.view.View;
 
 import com.beardedhen.androidbootstrap.BootstrapLabel;
 
 import butterknife.BindView;
 import cn.droidlover.xdroidmvp.mvp.XActivity;
+import cn.droidlover.xdroidmvp.router.Router;
 import cn.droidlover.xdroidmvp.sys.R;
 import cn.droidlover.xdroidmvp.sys.model.DevelopCustomerModel;
 import cn.droidlover.xdroidmvp.sys.present.PDevelopCustomerFormView;
@@ -34,6 +38,9 @@ public class DevelopCustomerFormViewActivity extends XActivity<PDevelopCustomerF
     @BindView(R.id.contentLayout)
     XStateController controller;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
     DevelopCustomerModel.DevelopCustomer data;
 
     @Override
@@ -41,6 +48,21 @@ public class DevelopCustomerFormViewActivity extends XActivity<PDevelopCustomerF
         controller.showLoading();
         String id = getIntent().getStringExtra("id");
         getP().queryOne(id);
+    }
+
+    @Override
+    public void initView() {
+        setSupportActionBar(toolbar);
+        controller.loadingView(View.inflate(context, R.layout.view_loading, null));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            Router.pop(context);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void showData(DevelopCustomerModel.DevelopCustomer data) {

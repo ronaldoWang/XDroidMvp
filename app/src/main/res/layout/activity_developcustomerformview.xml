@@ -48,8 +48,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        app:bootstrapBrand="info"
-                        app:bootstrapHeading="h5" />
+                        app:bootstrapBrand="secondary"
+                        app:bootstrapHeading="h6" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -73,8 +73,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        app:bootstrapBrand="info"
-                        app:bootstrapHeading="h5" />
+                        app:bootstrapBrand="secondary"
+                        app:bootstrapHeading="h6" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -98,8 +98,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        app:bootstrapBrand="info"
-                        app:bootstrapHeading="h5" />
+                        app:bootstrapBrand="secondary"
+                        app:bootstrapHeading="h6" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -123,8 +123,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        app:bootstrapBrand="info"
-                        app:bootstrapHeading="h5" />
+                        app:bootstrapBrand="secondary"
+                        app:bootstrapHeading="h6" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -148,8 +148,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        app:bootstrapBrand="info"
-                        app:bootstrapHeading="h5" />
+                        app:bootstrapBrand="secondary"
+                        app:bootstrapHeading="h6" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -173,8 +173,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        app:bootstrapBrand="info"
-                        app:bootstrapHeading="h5" />
+                        app:bootstrapBrand="secondary"
+                        app:bootstrapHeading="h6" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -198,8 +198,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        app:bootstrapBrand="info"
-                        app:bootstrapHeading="h5" />
+                        app:bootstrapBrand="secondary"
+                        app:bootstrapHeading="h6" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -223,8 +223,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        app:bootstrapBrand="info"
-                        app:bootstrapHeading="h5" />
+                        app:bootstrapBrand="secondary"
+                        app:bootstrapHeading="h6" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

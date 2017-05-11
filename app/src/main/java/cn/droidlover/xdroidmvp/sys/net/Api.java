@@ -8,7 +8,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 
 public class Api {
     public static final String API_BASE_URL = "http://gank.io/api/";
-    public static final String API_USER = "http://169.254.145.206:8080/jupai/";//http://jupai168.duapp.com/
+    public static final String API_USER = "http://192.168.0.104:8080/jupai/";//http://jupai168.duapp.com/
 
     private static GankService gankService;
     private static UserService userService;
