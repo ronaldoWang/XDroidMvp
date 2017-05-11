@@ -1,6 +1,10 @@
 package cn.droidlover.xdroidmvp.sys.model;
 
-import java.util.Date;
+import com.litesuits.orm.db.annotation.Column;
+import com.litesuits.orm.db.annotation.NotNull;
+import com.litesuits.orm.db.annotation.PrimaryKey;
+import com.litesuits.orm.db.annotation.Table;
+import com.litesuits.orm.db.enums.AssignType;
 
 import cn.droidlover.xdroidmvp.net.IModel;
 
@@ -9,19 +13,25 @@ import cn.droidlover.xdroidmvp.net.IModel;
  */
 
 public class UserModel extends BaseModel<UserModel.User> implements IModel {
+
+    @Table("T_USER")
     public static class User {
-
-        private String id;
-
+        @PrimaryKey(AssignType.AUTO_INCREMENT)
+        private Integer id;
+        @NotNull
+        @Column("login_name")
         private String loginName;
-
+        @NotNull
+        @Column("pwd")
+        private String pwd;
+        @Column("create_date")
         private String createDate;
 
-        public String getId() {
+        public Integer getId() {
             return id;
         }
 
-        public void setId(String id) {
+        public void setId(Integer id) {
             this.id = id;
         }
 
@@ -39,6 +49,14 @@ public class UserModel extends BaseModel<UserModel.User> implements IModel {
 
         public void setLoginName(String loginName) {
             this.loginName = loginName;
+        }
+
+        public String getPwd() {
+            return pwd;
+        }
+
+        public void setPwd(String pwd) {
+            this.pwd = pwd;
         }
     }
 
