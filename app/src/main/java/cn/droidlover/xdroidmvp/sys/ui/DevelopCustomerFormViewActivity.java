@@ -8,10 +8,12 @@ import android.view.View;
 import com.beardedhen.androidbootstrap.BootstrapLabel;
 
 import butterknife.BindView;
+import cn.droidlover.xdroidmvp.cache.SharedPref;
 import cn.droidlover.xdroidmvp.mvp.XActivity;
 import cn.droidlover.xdroidmvp.router.Router;
 import cn.droidlover.xdroidmvp.sys.R;
 import cn.droidlover.xdroidmvp.sys.model.DevelopCustomerModel;
+import cn.droidlover.xdroidmvp.sys.model.common.Constent;
 import cn.droidlover.xdroidmvp.sys.present.PDevelopCustomerFormView;
 import cn.droidlover.xdroidmvp.sys.utils.DictUtil;
 import cn.droidlover.xstatecontroller.XStateController;
@@ -47,7 +49,11 @@ public class DevelopCustomerFormViewActivity extends XActivity<PDevelopCustomerF
     public void initData(Bundle savedInstanceState) {
         controller.showLoading();
         String id = getIntent().getStringExtra("id");
-        getP().queryOne(id);
+        if (Constent.ONLINE) {
+            getP().queryOne(id);
+        } else {
+            getP().queryNativeOne(id);
+        }
     }
 
     @Override

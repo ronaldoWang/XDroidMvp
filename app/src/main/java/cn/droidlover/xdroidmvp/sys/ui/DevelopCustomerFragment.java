@@ -8,13 +8,17 @@ import com.rey.material.app.Dialog;
 import com.rey.material.app.DialogFragment;
 import com.rey.material.app.SimpleDialog;
 
+import java.util.List;
+
 import butterknife.BindView;
 import cn.droidlover.xdroidmvp.base.SimpleRecAdapter;
+import cn.droidlover.xdroidmvp.cache.SharedPref;
 import cn.droidlover.xdroidmvp.mvp.XFragment;
 import cn.droidlover.xdroidmvp.router.Router;
 import cn.droidlover.xdroidmvp.sys.R;
 import cn.droidlover.xdroidmvp.sys.adapter.DevelopCustomerFragmentAdapter;
 import cn.droidlover.xdroidmvp.sys.model.DevelopCustomerModel;
+import cn.droidlover.xdroidmvp.sys.model.common.Constent;
 import cn.droidlover.xdroidmvp.sys.present.PDevelopCustomer;
 import cn.droidlover.xdroidmvp.sys.widget.LoadingDialog;
 import cn.droidlover.xdroidmvp.sys.widget.StateView;
@@ -43,7 +47,7 @@ public class DevelopCustomerFragment extends XFragment<PDevelopCustomer> {
                 @Override
                 public void onItemClick(int position, DevelopCustomerModel.DevelopCustomer model, int tag, DevelopCustomerFragmentAdapter.ViewHolder holder) {
                     super.onItemClick(position, model, tag, holder);
-                    String id = model.getCustomerNo();
+                    String id = model.getId();
                     Router.newIntent(context).to(DevelopCustomerFormViewActivity.class).putString("id", id).launch();
                 }
 
@@ -84,12 +88,12 @@ public class DevelopCustomerFragment extends XFragment<PDevelopCustomer> {
                 .setOnRefreshAndLoadMoreListener(new XRecyclerView.OnRefreshAndLoadMoreListener() {
                     @Override
                     public void onRefresh() {
-                        getP().loadData(1);
+                        loadData(1);
                     }
 
                     @Override
                     public void onLoadMore(int page) {
-                        getP().loadData(page);
+                        loadData(page);
                     }
                 });
         contentLayout.loadingView(View.inflate(getContext(), R.layout.view_loading, null));
@@ -99,17 +103,17 @@ public class DevelopCustomerFragment extends XFragment<PDevelopCustomer> {
     /**
      * 展示数据
      *
-     * @param page  页码
-     * @param model 数据
+     * @param page 页码
+     * @param data 数据
      */
-    public void showData(int page, DevelopCustomerModel model) {
+    public void showData(int page, List<DevelopCustomerModel.DevelopCustomer> data) {
         if (page > 1) {
-            getAdapter().addData(model.getData());
+            getAdapter().addData(data);
         } else {
-            getAdapter().setData(model.getData());
+            getAdapter().setData(data);
         }
 
-        if (null != model.getData() && !model.getData().isEmpty() && model.getData().size() == 10) {
+        if (null != data && !data.isEmpty() && data.size() == 10) {
             contentLayout.getRecyclerView().setPage(page, page + 1);
         } else {
             contentLayout.getRecyclerView().setPage(page, page);
@@ -124,11 +128,15 @@ public class DevelopCustomerFragment extends XFragment<PDevelopCustomer> {
     @Override
     public void initData(Bundle savedInstanceState) {
         initAdapter();
-        loadData();
+        loadData(1);
     }
 
-    public void loadData() {
-        getP().loadData(1);
+    public void loadData(final Integer page) {
+        if (Constent.ONLINE) {
+            getP().loadData(page);
+        } else {
+            getP().loadNativeData(page);
+        }
     }
 
     @Override

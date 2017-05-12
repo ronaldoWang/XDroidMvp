@@ -6,6 +6,7 @@ import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
+import cn.droidlover.xdroidmvp.sys.db.OrmLiteManager;
 import cn.droidlover.xdroidmvp.sys.model.DevelopCustomerModel;
 import cn.droidlover.xdroidmvp.sys.net.Api;
 import cn.droidlover.xdroidmvp.sys.ui.DevelopCustomerFormViewActivity;
@@ -16,7 +17,7 @@ import cn.droidlover.xdroidmvp.sys.ui.DevelopCustomerFormViewActivity;
 
 public class PDevelopCustomerFormView extends XPresent<DevelopCustomerFormViewActivity> {
     /**
-     * 查询单个
+     * 在线查询单个
      *
      * @param id
      */
@@ -42,5 +43,20 @@ public class PDevelopCustomerFormView extends XPresent<DevelopCustomerFormViewAc
                         }
                     }
                 });
+    }
+
+    /**
+     * 离线查询单个
+     *
+     * @param id
+     */
+    public void queryNativeOne(final String id) {
+        DevelopCustomerModel.DevelopCustomer data = OrmLiteManager.getInstance(getV())
+                .getLiteOrm(getV()).queryById(id, DevelopCustomerModel.DevelopCustomer.class);
+        if (null == data) {
+            ToastUtils.showShortToast("未查询到数据");
+        } else {
+            getV().showData(data);
+        }
     }
 }

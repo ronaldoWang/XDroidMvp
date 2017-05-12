@@ -59,7 +59,7 @@ public class PUser extends XPresent<LoginActivity> {
      * @param userPwd
      */
     public void unLineLogin(String userName, String userPwd) {
-        List<UserModel.User> userList = OrmLiteManager.getInstance(getV()).getLiteOrm(getV()).query(new QueryBuilder<UserModel.User>(UserModel.User.class).where("login_name=? and pwd=?", userName, EncryptUtils.encryptMD5ToString("userPwd")));
+        List<UserModel.User> userList = OrmLiteManager.getInstance(getV()).getLiteOrm(getV()).query(new QueryBuilder<UserModel.User>(UserModel.User.class).where("login_name=? and pwd=?", userName, EncryptUtils.encryptMD5ToString(userPwd)));
         LoadingDialog.cancelDialogForLoading();
         if (userList.isEmpty()) {
             ToastUtils.showLongToast("用户名或密码不正确");

@@ -16,6 +16,7 @@ import cn.droidlover.xdroidmvp.mvp.XActivity;
 import cn.droidlover.xdroidmvp.router.Router;
 import cn.droidlover.xdroidmvp.sys.R;
 import cn.droidlover.xdroidmvp.sys.model.UserModel;
+import cn.droidlover.xdroidmvp.sys.model.common.Constent;
 import cn.droidlover.xdroidmvp.sys.present.PUser;
 import cn.droidlover.xdroidmvp.sys.widget.LoadingDialog;
 
@@ -56,7 +57,7 @@ public class LoginActivity extends XActivity<PUser> {
     }
 
     /**
-     * 在线登录
+     * 登录
      */
     @OnClick({R.id.login_btn_login_online, R.id.login_btn_login_unline})
     public void click(View v) {
@@ -73,10 +74,12 @@ public class LoginActivity extends XActivity<PUser> {
         LoadingDialog.showDialogForLoading(context);
         switch (v.getId()) {
             case R.id.login_btn_login_online:
-                getP().login(userName, userPwd);
+                Constent.ONLINE = true;
+                getP().login(userName, userPwd);//在线登录
                 break;
             case R.id.login_btn_login_unline:
-                getP().unLineLogin(userName, userPwd);
+                Constent.ONLINE = false;
+                getP().unLineLogin(userName, userPwd);//离线登录
                 break;
             default:
                 break;
