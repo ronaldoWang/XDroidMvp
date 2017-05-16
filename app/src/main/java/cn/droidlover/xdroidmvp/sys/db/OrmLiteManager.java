@@ -6,12 +6,16 @@ import android.os.Environment;
 
 import com.litesuits.orm.LiteOrm;
 import com.litesuits.orm.db.DataBaseConfig;
+import com.litesuits.orm.db.assit.QueryBuilder;
 import com.litesuits.orm.db.assit.SQLiteHelper;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.util.List;
+import java.util.Objects;
 
 import cn.droidlover.xdroidmvp.sys.App;
 import cn.droidlover.xdroidmvp.sys.R;
@@ -100,4 +104,80 @@ public class OrmLiteManager {
         return liteOrm;
     }
 
+    /**
+     * 查询集合
+     *
+     * @param context
+     * @param clazz
+     * @param distinct
+     * @param where
+     * @param groupBy
+     * @param having
+     * @param orderBy
+     * @param limit
+     * @param <T>
+     * @return
+     */
+    public static <T> List<T> query(Context context, Class<T> clazz, boolean distinct, String where,
+                                    String groupBy, String having, String orderBy, String limit) {
+        LiteOrm liteOrm = OrmLiteManager.getInstance(context).getLiteOrm(context);
+        QueryBuilder<T> queryBuilder = new QueryBuilder<T>(clazz);
+        queryBuilder.distinct(distinct);
+        queryBuilder.where(where);
+        queryBuilder.groupBy(groupBy);
+        queryBuilder.having(having);
+        queryBuilder.orderBy(orderBy);
+        queryBuilder.limit(limit);
+        return liteOrm.query(queryBuilder);
+    }
+
+    /**
+     * 获得总数
+     *
+     * @param context
+     * @param clazz
+     * @param where
+     * @return
+     */
+    public static <T> Long getCount(Context context, Class<T> clazz, String where) {
+        LiteOrm liteOrm = OrmLiteManager.getInstance(context).getLiteOrm(context);
+        QueryBuilder<T> queryBuilder = new QueryBuilder<T>(clazz);
+        queryBuilder.where(where);
+        return liteOrm.queryCount(queryBuilder);
+    }
+
+    /**
+     * 保存
+     *
+     * @param context
+     * @param entity
+     * @return
+     */
+    public static Long save(Context context, Objects entity) {
+        try {
+            LiteOrm liteOrm = OrmLiteManager.getInstance(context).getLiteOrm(context);
+            Class clazz = entity.getClass();
+            Field id = clazz.getDeclaredField("id");
+            if (null == id.get(entity)) {
+                liteOrm.insert(entity);
+            } else {
+                liteOrm.update(entity);
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+        return -1L;
+    }
+
+    public static boolean delete(Context context, Objects entity) {
+        LiteOrm liteOrm = OrmLiteManager.getInstance(context).getLiteOrm(context);
+        int del = liteOrm.delete(entity);
+        if (del > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

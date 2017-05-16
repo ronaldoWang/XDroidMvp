@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.EditText;
 
 import com.blankj.utilcode.util.ScreenUtils;
 import com.rey.material.app.Dialog;
@@ -17,6 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.base.SimpleRecAdapter;
 import cn.droidlover.xdroidmvp.mvp.XActivity;
 import cn.droidlover.xdroidmvp.router.Router;
@@ -40,6 +41,8 @@ public class DevelopCustomerActivity extends XActivity<PDevelopCustomer1> {
     DevelopCustomerFragmentAdapter adapter;
     XCSlideView mSlideViewLeft;//搜索侧滑框
 
+    String search = "";//查询json
+
     @Override
     public void initView(Bundle bundle) {
         int mScreenWidth = ScreenUtils.getScreenWidth();
@@ -48,7 +51,7 @@ public class DevelopCustomerActivity extends XActivity<PDevelopCustomer1> {
         mSlideViewLeft = XCSlideView.create(this, XCSlideView.Positon.LEFT);
         mSlideViewLeft.setMenuView(this, menuViewLeft);
         mSlideViewLeft.setMenuWidth(mScreenWidth * 7 / 9);
-        ImageView iv = ButterKnife.findById(menuViewLeft, R.id.iv_back);
+        EditText iv = ButterKnife.findById(menuViewLeft, R.id.edit_customer_customerName);
 
         //加载Toolbar
         setSupportActionBar(toolbar);
@@ -166,9 +169,9 @@ public class DevelopCustomerActivity extends XActivity<PDevelopCustomer1> {
 
     public void loadData(final Integer page) {
         if (Constent.ONLINE) {
-            getP().loadData(page);
+            getP().loadData(page, search);
         } else {
-            getP().loadNativeData(page);
+            getP().loadNativeData(page, search);
         }
     }
 
@@ -186,6 +189,31 @@ public class DevelopCustomerActivity extends XActivity<PDevelopCustomer1> {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.menu_list, menu);
         return true;
+    }
+
+    @OnClick({R.id.btn_search, R.id.btn_reset})
+    public void click(View v) {
+        switch (v.getId()) {
+            case R.id.btn_search:
+                doSearch();
+                break;
+            case R.id.btn_reset:
+                doReset();
+                break;
+        }
+    }
+
+    /**
+     * 重置
+     */
+    private void doReset() {
+    }
+
+    /**
+     * 查询
+     */
+    private void doSearch() {
+
     }
 
     @Override

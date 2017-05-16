@@ -14,7 +14,6 @@ import cn.droidlover.xdroidmvp.sys.model.DevelopCustomerModel;
 import cn.droidlover.xdroidmvp.sys.model.common.Constent;
 import cn.droidlover.xdroidmvp.sys.net.Api;
 import cn.droidlover.xdroidmvp.sys.ui.DevelopCustomerActivity;
-import cn.droidlover.xdroidmvp.sys.ui.DevelopCustomerFragment;
 import cn.droidlover.xdroidmvp.sys.widget.LoadingDialog;
 
 /**
@@ -22,8 +21,8 @@ import cn.droidlover.xdroidmvp.sys.widget.LoadingDialog;
  */
 
 public class PDevelopCustomer1 extends XPresent<DevelopCustomerActivity> {
-    public void loadData(final int page) {
-        Api.getDevelopCustomerService().query(page)
+    public void loadData(final int page, final String search) {
+        Api.getDevelopCustomerService().query(page, search)
                 .compose(XApi.<DevelopCustomerModel>getApiTransformer())
                 .compose(XApi.<DevelopCustomerModel>getScheduler())
                 .compose(getV().<DevelopCustomerModel>bindToLifecycle())
@@ -71,7 +70,7 @@ public class PDevelopCustomer1 extends XPresent<DevelopCustomerActivity> {
                 });
     }
 
-    public void loadNativeData(final int page) {
+    public void loadNativeData(final int page, final String search) {
         List<DevelopCustomerModel.DevelopCustomer> data = OrmLiteManager.getInstance(getV())
                 .getLiteOrm(getV())
                 .query(new QueryBuilder<DevelopCustomerModel.DevelopCustomer>(DevelopCustomerModel.DevelopCustomer.class)
