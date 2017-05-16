@@ -1,9 +1,11 @@
 package cn.droidlover.xdroidmvp.sys.ui;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.ScreenUtils;
 import com.rey.material.app.Dialog;
 import com.rey.material.app.DialogFragment;
 import com.rey.material.app.SimpleDialog;
@@ -22,6 +24,7 @@ import cn.droidlover.xdroidmvp.sys.model.common.Constent;
 import cn.droidlover.xdroidmvp.sys.present.PDevelopCustomer;
 import cn.droidlover.xdroidmvp.sys.widget.LoadingDialog;
 import cn.droidlover.xdroidmvp.sys.widget.StateView;
+import cn.droidlover.xdroidmvp.sys.widget.XCSlideView;
 import cn.droidlover.xrecyclerview.RecyclerItemCallback;
 import cn.droidlover.xrecyclerview.XRecyclerContentLayout;
 import cn.droidlover.xrecyclerview.XRecyclerView;
@@ -34,6 +37,9 @@ public class DevelopCustomerFragment extends XFragment<PDevelopCustomer> {
     @BindView(R.id.contentLayout)
     XRecyclerContentLayout contentLayout;
     DevelopCustomerFragmentAdapter adapter;
+
+    XCSlideView mSlideViewRight;//搜索侧滑框
+    int mScreenWidth = 0;//屏幕宽度
 
     /**
      * 获得adapter
@@ -127,8 +133,17 @@ public class DevelopCustomerFragment extends XFragment<PDevelopCustomer> {
 
     @Override
     public void initData(Bundle savedInstanceState) {
+        initView();
         initAdapter();
         loadData(1);
+    }
+
+    private void initView() {
+        mScreenWidth = ScreenUtils.getScreenWidth();
+        View menuViewLeft = LayoutInflater.from(context).inflate(R.layout.layout_slideview, null);
+        mSlideViewRight = XCSlideView.create(this.getActivity(), XCSlideView.Positon.LEFT);
+        mSlideViewRight.setMenuView(this.getActivity(), menuViewLeft);
+        mSlideViewRight.setMenuWidth(mScreenWidth * 7 / 9);
     }
 
     public void loadData(final Integer page) {

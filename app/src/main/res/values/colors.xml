@@ -13,4 +13,6 @@
     <color name="gray_deep">#c9000000</color>
     <color name="white">#FFFFFF</color>
 
+    <color name="mask_color">#66000000</color>
+
 </resources>
