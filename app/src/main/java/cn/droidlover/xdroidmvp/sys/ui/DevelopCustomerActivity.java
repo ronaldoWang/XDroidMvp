@@ -1,9 +1,12 @@
 package cn.droidlover.xdroidmvp.sys.ui;
 
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.ImageView;
 
 import com.blankj.utilcode.util.ScreenUtils;
 import com.rey.material.app.Dialog;
@@ -13,33 +16,63 @@ import com.rey.material.app.SimpleDialog;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import cn.droidlover.xdroidmvp.base.SimpleRecAdapter;
-import cn.droidlover.xdroidmvp.cache.SharedPref;
-import cn.droidlover.xdroidmvp.mvp.XFragment;
+import cn.droidlover.xdroidmvp.mvp.XActivity;
 import cn.droidlover.xdroidmvp.router.Router;
 import cn.droidlover.xdroidmvp.sys.R;
 import cn.droidlover.xdroidmvp.sys.adapter.DevelopCustomerFragmentAdapter;
 import cn.droidlover.xdroidmvp.sys.model.DevelopCustomerModel;
 import cn.droidlover.xdroidmvp.sys.model.common.Constent;
-import cn.droidlover.xdroidmvp.sys.present.PDevelopCustomer;
-import cn.droidlover.xdroidmvp.sys.widget.LoadingDialog;
-import cn.droidlover.xdroidmvp.sys.widget.StateView;
+import cn.droidlover.xdroidmvp.sys.present.PDevelopCustomer1;
 import cn.droidlover.xdroidmvp.sys.widget.XCSlideView;
 import cn.droidlover.xrecyclerview.RecyclerItemCallback;
 import cn.droidlover.xrecyclerview.XRecyclerContentLayout;
 import cn.droidlover.xrecyclerview.XRecyclerView;
 
-/**
- * Created by haoxi on 2017/4/25.
- */
+public class DevelopCustomerActivity extends XActivity<PDevelopCustomer1> {
 
-public class DevelopCustomerFragment extends XFragment<PDevelopCustomer> {
     @BindView(R.id.contentLayout)
     XRecyclerContentLayout contentLayout;
-    DevelopCustomerFragmentAdapter adapter;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
-    XCSlideView mSlideViewRight;//搜索侧滑框
-    int mScreenWidth = 0;//屏幕宽度
+    DevelopCustomerFragmentAdapter adapter;
+    XCSlideView mSlideViewLeft;//搜索侧滑框
+
+    @Override
+    public void initView(Bundle bundle) {
+        int mScreenWidth = ScreenUtils.getScreenWidth();
+        //加载侧滑界面
+        View menuViewLeft = LayoutInflater.from(context).inflate(R.layout.layout_slideview, null);
+        mSlideViewLeft = XCSlideView.create(this, XCSlideView.Positon.LEFT);
+        mSlideViewLeft.setMenuView(this, menuViewLeft);
+        mSlideViewLeft.setMenuWidth(mScreenWidth * 7 / 9);
+        ImageView iv = ButterKnife.findById(menuViewLeft, R.id.iv_back);
+
+        //加载Toolbar
+        setSupportActionBar(toolbar);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.search:
+                        if (!mSlideViewLeft.isShow())
+                            mSlideViewLeft.show();
+                        else
+                            mSlideViewLeft.dismiss();
+                        break;
+                }
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public void initData(Bundle savedInstanceState) {
+        initAdapter();
+        loadData(1);
+    }
 
     /**
      * 获得adapter
@@ -72,11 +105,11 @@ public class DevelopCustomerFragment extends XFragment<PDevelopCustomer> {
                             super.onNegativeActionClicked(fragment);
                         }
                     };
-                    ((SimpleDialog.Builder) builder).message("是否删除?")
-                            .positiveAction("确认")
-                            .negativeAction("取消");
+                    ((SimpleDialog.Builder) builder).message(getResources().getString(R.string.comfirm_delete))
+                            .positiveAction(getResources().getString(R.string.ok))
+                            .negativeAction(getResources().getString(R.string.cancel));
                     DialogFragment fragment = DialogFragment.newInstance(builder);
-                    fragment.show(getFragmentManager(), null);
+                    fragment.show(getSupportFragmentManager(), null);
                 }
             });
 
@@ -88,7 +121,7 @@ public class DevelopCustomerFragment extends XFragment<PDevelopCustomer> {
      * 初始化Adapter
      */
     private void initAdapter() {
-        setLayoutManager(contentLayout.getRecyclerView());
+        contentLayout.getRecyclerView().verticalLayoutManager(context);
         contentLayout.getRecyclerView().setAdapter(getAdapter());
         contentLayout.getRecyclerView()
                 .setOnRefreshAndLoadMoreListener(new XRecyclerView.OnRefreshAndLoadMoreListener() {
@@ -102,7 +135,7 @@ public class DevelopCustomerFragment extends XFragment<PDevelopCustomer> {
                         loadData(page);
                     }
                 });
-        contentLayout.loadingView(View.inflate(getContext(), R.layout.view_loading, null));
+        contentLayout.loadingView(View.inflate(context, R.layout.view_loading, null));
         contentLayout.getRecyclerView().useDefLoadMoreView();
     }
 
@@ -131,21 +164,6 @@ public class DevelopCustomerFragment extends XFragment<PDevelopCustomer> {
         }
     }
 
-    @Override
-    public void initData(Bundle savedInstanceState) {
-        initAdapter();
-        loadData(1);
-    }
-
-    @Override
-    public void initView(Bundle bundle) {
-        mScreenWidth = ScreenUtils.getScreenWidth();
-        View menuViewLeft = LayoutInflater.from(context).inflate(R.layout.layout_slideview, null);
-        mSlideViewRight = XCSlideView.create(this.getActivity(), XCSlideView.Positon.LEFT);
-        mSlideViewRight.setMenuView(this.getActivity(), menuViewLeft);
-        mSlideViewRight.setMenuWidth(mScreenWidth * 7 / 9);
-    }
-
     public void loadData(final Integer page) {
         if (Constent.ONLINE) {
             getP().loadData(page);
@@ -155,16 +173,28 @@ public class DevelopCustomerFragment extends XFragment<PDevelopCustomer> {
     }
 
     @Override
-    public int getLayoutId() {
-        return R.layout.fragment_base_pager;
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            Router.pop(context);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public PDevelopCustomer newP() {
-        return new PDevelopCustomer();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_list, menu);
+        return true;
     }
 
-    public static DevelopCustomerFragment newInstance() {
-        return new DevelopCustomerFragment();
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_developcustomer;
+    }
+
+    @Override
+    public PDevelopCustomer1 newP() {
+        return new PDevelopCustomer1();
     }
 }

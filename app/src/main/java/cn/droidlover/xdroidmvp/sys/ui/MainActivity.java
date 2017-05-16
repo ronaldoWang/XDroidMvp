@@ -28,6 +28,11 @@ public class MainActivity extends XActivity {
     ViewPager mViewPager;
 
     @Override
+    public void initView(Bundle bundle) {
+
+    }
+
+    @Override
     public void initData(Bundle savedInstanceState) {
         setSupportActionBar(toolbar);
         StatusBarCompat.translucentStatusBar(this);

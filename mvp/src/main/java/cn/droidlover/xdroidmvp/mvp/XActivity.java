@@ -38,13 +38,9 @@ public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity 
             setContentView(getLayoutId());
             bindUI(null);
             bindEvent();
-            initView();
+            initView(savedInstanceState);
         }
         initData(savedInstanceState);
-    }
-
-    public void initView() {
-
     }
 
     @Override

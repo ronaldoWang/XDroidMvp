@@ -27,6 +27,11 @@ public class SplashActivity extends XActivity {
     TextView tvName;
 
     @Override
+    public void initView(Bundle bundle) {
+
+    }
+
+    @Override
     public void initData(Bundle savedInstanceState) {
         StatusBarCompat.translucentStatusBar(this);
         PropertyValuesHolder alpha = PropertyValuesHolder.ofFloat("alpha", 0.3f, 1f);

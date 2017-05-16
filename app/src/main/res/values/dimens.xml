@@ -21,4 +21,7 @@
     <dimen name="default_padding">16dp</dimen>
     <dimen name="micro_padding">4dp</dimen>
     <dimen name="default_circle_size">250dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
 </resources>

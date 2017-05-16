@@ -1,5 +1,7 @@
 package cn.droidlover.xdroidmvp.sys.ui;
 
+import android.os.Bundle;
+
 import cn.droidlover.xdroidmvp.base.SimpleRecAdapter;
 import cn.droidlover.xdroidmvp.sys.adapter.GanhuoAdapter;
 import cn.droidlover.xdroidmvp.sys.model.GankResults;
@@ -31,6 +33,12 @@ public class GanhuoFragment extends BasePagerFragment {
             });
         }
         return adapter;
+    }
+
+
+    @Override
+    public void initView(Bundle bundle) {
+
     }
 
     @Override

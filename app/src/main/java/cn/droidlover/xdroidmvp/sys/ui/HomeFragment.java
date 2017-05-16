@@ -1,5 +1,7 @@
 package cn.droidlover.xdroidmvp.sys.ui;
 
+import android.os.Bundle;
+
 import cn.droidlover.xdroidmvp.base.SimpleRecAdapter;
 import cn.droidlover.xdroidmvp.sys.adapter.HomeAdapter;
 import cn.droidlover.xdroidmvp.sys.model.GankResults;
@@ -13,6 +15,12 @@ import cn.droidlover.xrecyclerview.XRecyclerView;
 public class HomeFragment extends BasePagerFragment {
 
     HomeAdapter adapter;
+
+
+    @Override
+    public void initView(Bundle bundle) {
+
+    }
 
     @Override
     public SimpleRecAdapter getAdapter() {

@@ -57,7 +57,7 @@ public class DevelopCustomerFormViewActivity extends XActivity<PDevelopCustomerF
     }
 
     @Override
-    public void initView() {
+    public void initView(Bundle bundle) {
         setSupportActionBar(toolbar);
         controller.loadingView(View.inflate(context, R.layout.view_loading, null));
     }

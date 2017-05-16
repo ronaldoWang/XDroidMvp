@@ -14,6 +14,8 @@ public interface IView<P> {
 
     void initData(Bundle savedInstanceState);
 
+    void initView(Bundle savedInstanceState);
+
     int getOptionsMenuId();
 
     int getLayoutId();

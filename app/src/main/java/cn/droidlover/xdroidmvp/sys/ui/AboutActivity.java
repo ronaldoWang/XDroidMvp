@@ -22,8 +22,13 @@ public class AboutActivity extends XActivity {
 
 
     @Override
-    public void initData(Bundle savedInstanceState) {
+    public void initView(Bundle bundle) {
         initToolbar();
+    }
+
+    @Override
+    public void initData(Bundle savedInstanceState) {
+
     }
 
     private void initToolbar() {

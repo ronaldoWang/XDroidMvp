@@ -1,5 +1,7 @@
 package cn.droidlover.xdroidmvp.sys.ui;
 
+import android.os.Bundle;
+
 import cn.droidlover.xdroidmvp.base.SimpleRecAdapter;
 import cn.droidlover.xdroidmvp.sys.adapter.GirlAdapter;
 import cn.droidlover.xdroidmvp.sys.model.GankResults;
@@ -31,6 +33,11 @@ public class GirlFragment extends BasePagerFragment {
     @Override
     public void setLayoutManager(XRecyclerView recyclerView) {
         recyclerView.gridLayoutManager(context, 2);
+    }
+
+    @Override
+    public void initView(Bundle bundle) {
+
     }
 
     @Override

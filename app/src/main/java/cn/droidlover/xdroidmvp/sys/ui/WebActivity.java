@@ -54,6 +54,11 @@ public class WebActivity extends XActivity {
         initWebView();
     }
 
+    @Override
+    public void initView(Bundle savedInstanceState) {
+
+    }
+
     private void initContentLayout() {
         contentLayout.loadingView(View.inflate(context, R.layout.view_loading, null));
     }
